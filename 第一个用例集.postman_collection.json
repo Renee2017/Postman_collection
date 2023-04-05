@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "a93d0bb4-f0dc-4f35-82f2-0da58031abf2",
+		"name": "第一个用例集",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "搜索topshop登录接口_密码错误",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "username=18002612856&password=Qq2017..&verify_code=8888"
+				},
+				"url": {
+					"raw": "http://127.0.0.1/index.php?m=Home&c=User&a=do_login&t=0.67800261790068364",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "m",
+							"value": "Home"
+						},
+						{
+							"key": "c",
+							"value": "User"
+						},
+						{
+							"key": "a",
+							"value": "do_login"
+						},
+						{
+							"key": "t",
+							"value": "0.67800261790068364"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "搜索topshop登录接口_登录成功",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "username=18002612856&password=222&verify_code=8888"
+				},
+				"url": {
+					"raw": "http://127.0.0.1/index.php?m=Home&c=User&a=do_login&t=0.67800261790068364",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "m",
+							"value": "Home"
+						},
+						{
+							"key": "c",
+							"value": "User"
+						},
+						{
+							"key": "a",
+							"value": "do_login"
+						},
+						{
+							"key": "t",
+							"value": "0.67800261790068364"
+						}
+					]
+				},
+				"description": "1.注意每次登录传参时t都是随机赋予的，所有无法正常演示\r\n2.请求头必须勾选host,填写content-type\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http请求",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
