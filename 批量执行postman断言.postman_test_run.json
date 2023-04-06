@@ -1,0 +1,67 @@
+{
+	"id": "043ca099-fc60-485f-8b44-eebd28574dd8",
+	"name": "postman断言",
+	"timestamp": "2023-04-05T17:40:56.310Z",
+	"collection_id": "3d818721-848c-4bf7-908b-ab738a5d8d17",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 4,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "c086f426-97ea-4502-b1ab-9f1a39b53bab",
+			"name": "获取天气接口-含断言",
+			"url": "http://www.weather.com.cn/data/sk/101010100.html",
+			"time": 229,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应状态码为“200”": true,
+				"断言响应体包含“南风”  ": true,
+				"响应体city对应的值为“北京” ": true,
+				"响应头中content—type的类型为text/html": true
+			},
+			"testPassFailCounts": {
+				"响应状态码为“200”": {
+					"pass": 1,
+					"fail": 0
+				},
+				"断言响应体包含“南风”  ": {
+					"pass": 1,
+					"fail": 0
+				},
+				"响应体city对应的值为“北京” ": {
+					"pass": 1,
+					"fail": 0
+				},
+				"响应头中content—type的类型为text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				229
+			],
+			"allTests": [
+				{
+					"响应状态码为“200”": true,
+					"断言响应体包含“南风”  ": true,
+					"响应体city对应的值为“北京” ": true,
+					"响应头中content—type的类型为text/html": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 229,
+	"collection": {
+		"requests": [
+			{
+				"id": "c086f426-97ea-4502-b1ab-9f1a39b53bab",
+				"method": "GET"
+			}
+		]
+	}
+}

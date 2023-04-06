@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "7acfb627-7bdc-4c2b-abe5-3ad2f1af961a",
+		"name": "postman关联",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取天气接口-设置全局变量",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 1. 全局变量\r",
+							"    var jsondata=pm.response.json()\r",
+							"    //从响应结果中获得城市名,并将值存入变量city\r",
+							"    var city=jsondata.weatherinfo.city\r",
+							"    // 将城市名写入全局变量，**代码设置**：`pm.globals.set(“全局变量名”，全局变量的值)`\r",
+							"    pm.globals.set(\"glb_city\",city)\r",
+							"\r",
+							"// 2.环境变量\r",
+							"    // 概念：在 特定环境（生产环境、开发环境、测试环境）下，生效的变量，在本环境内唯一。\r",
+							"    // 代码设置：`pm.environment.set(\"环境变量名\", 环境变量值)`\r",
+							"    //      示例: pm.environment.set(\"env_age\", 99)\r",
+							"    // 获取：\r",
+							"        // 代码获取：`var 接收值的变量 = pm.environment.get(\"环境变量名\")`\r",
+							"        //      示例: var ret = pm.environment.get(\"env_age\")  // ret 的值为 99\r",
+							"        // 请求参数获取（postman界面获取）：`{{环境变量名}}`\r",
+							"        //       示例: {{env_age}}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.weather.com.cn/data/sk/101010100.html?g={{glb_city}}",
+					"protocol": "http",
+					"host": [
+						"www",
+						"weather",
+						"com",
+						"cn"
+					],
+					"path": [
+						"data",
+						"sk",
+						"101010100.html"
+					],
+					"query": [
+						{
+							"key": "g",
+							"value": "{{glb_city}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "百度搜索接口-使用全局变量_代码获取",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// 全局变量的获取：\r",
+							"    // 1.**代码获取**: `var 接收值的变量 = pm.globals.get(“全局变量名”)`\r",
+							"var zzz=pm.globals.get(\"glb_city\")  // zzz 的值为 \"北京\"\r",
+							"  \r",
+							"    // 2.**请求参数获取**（postman界面获取）: `{{全局变量名}}`\r",
+							"    // // 示例：\r",
+							"    // {{glb_city}}\r",
+							"    \r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.sogou.com/web",
+					"protocol": "https",
+					"host": [
+						"www",
+						"sogou",
+						"com"
+					],
+					"path": [
+						"web"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "百度搜索接口-使用全局变量_请求参数获取",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.baidu.com/s?wd={{glb_city}}",
+					"protocol": "http",
+					"host": [
+						"www",
+						"baidu",
+						"com"
+					],
+					"path": [
+						"s"
+					],
+					"query": [
+						{
+							"key": "wd",
+							"value": "{{glb_city}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

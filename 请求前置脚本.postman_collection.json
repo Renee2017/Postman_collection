@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "32b7cbeb-8874-451c-a9ae-bd77c2ae1dd5",
+		"name": "请求前置脚本",
+		"description": "- 在 send 按钮点击后，请求前置脚本代码，第一时间被执行。在 postman 内部实际分析 http请求之前。\r\n\r\n> 假设，这样一种场景：\r\n> ​\t\t调某接口时，要输入 “时间戳”，如果输入的 “时间戳” 的绝对值，超过标准时间10分钟。 则不允许调用。",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "访问百度带时间戳",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"// - 时间戳：对应绝对时间，从 1970年1月1日00:00:00 到现在 所经历的秒数。\r",
+							"// 拿到时间戳\r",
+							"//Data是一个构造函数，getTime是该函数下的一个方法，调用构造函数必须用new命令，让构造函数Data生成一个实例对象，保存在变量 timestamp 中\r",
+							"var timestamp = new Date().getTime() \r",
+							"// 将时间戳设置到 全局变量\r",
+							"pm.globals.set(\"glb_timestamp\", timestamp)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.baidu.com/?t={{glb_timestamps}}",
+					"protocol": "http",
+					"host": [
+						"www",
+						"baidu",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "t",
+							"value": "{{glb_timestamps}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

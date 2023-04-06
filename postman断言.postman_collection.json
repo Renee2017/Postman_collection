@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "3d818721-848c-4bf7-908b-ab738a5d8d17",
+		"name": "postman断言",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取天气接口-含断言",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 1. 断言响应状态码—— Status code: Code is 200  \r",
+							"// pm：postman的一个实例\r",
+							"// test(): postman实例的方法，有两个参数\r",
+							"// \t参1：断言后显示的文字提示信息，可改。\r",
+							"//     参2：匿名函数\r",
+							"pm.test(\"响应状态码为“200”\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);\r",
+							"});\r",
+							"\r",
+							"//2.断言响应体是否包含某个字符串—— Response body: Contains string （应用较少）\r",
+							"// \"string_you_want_to_search\" ——> 预期结果。 可以修改\r",
+							"pm.test(\"断言响应体包含“南风”  \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"南风\");\r",
+							"});\r",
+							"\r",
+							"// 3. 断言响应体是否完全等于某个字符串（对象）（应用较少）\r",
+							"// **Response body: Is equal to a string**\r",
+							"// pm.test(\"响应体完全对应\", function () {\r",
+							"//     pm.response.to.have.body(\"response_body_string\");\r",
+							"// });\r",
+							"\r",
+							"// 4. 断言JSON数据==   Response body: JSON value check**\r",
+							"pm.test(\"响应体city对应的值为“北京” \", function () {\r",
+							"    var jsondata = pm.response.json();\r",
+							"    pm.expect(jsondata.weatherinfo.city).to.eql(\"北京\");\r",
+							"});\r",
+							"\r",
+							"// 5. 断言响应头  Response headers: Content-Type header check**\r",
+							"// pm 的响应头中包含 Content-Type\r",
+							"// 可以在 .header 中，添加响应头中的 key 对应的 value 判定。用 ，隔分。\r",
+							"pm.test(\"响应头中content—type的类型为text/html\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\",\"text/html\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.weather.com.cn/data/sk/101010100.html",
+					"protocol": "http",
+					"host": [
+						"www",
+						"weather",
+						"com",
+						"cn"
+					],
+					"path": [
+						"data",
+						"sk",
+						"101010100.html"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
