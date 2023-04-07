@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "d56f3a89-4817-40f8-93ca-44aef235c96b",
+		"name": "参数化用例集",
+		"description": "\r\n**根据使用数据 位置 不同，有两种获取数据文件中数据的方法。**\r\n\r\n- 第一种：**请求参数**（请求行、请求头、请求体）中，使用  数据文件中 的数据\r\n  - **使用 {{}}** 包裹 csv 文件 字段名 或 json 文件中的  key \r\n    - 如： {{username}}  或 {{password}}\r\n- 第二种：**代码**（断言、请求前置脚本）中，使用  数据文件中 的数据\r\n  - 需要借助 postman 提供的 **关键字data** 点 csv 文件的字段名 或 json文件的 key\r\n    - 如： data.username  或  data.password\r\n\r\n强调：一旦查询参数替换完成，Send 就不再能正常获取 响应数据。（数据必须从数据文件中读取，才能正常发送请求，Send 不具备读取数据文件的功能）\r\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "参数化案例—按手机号找运营商",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://cx.shouji.360.cn/phonearea.php?number=13012345678",
+					"protocol": "http",
+					"host": [
+						"cx",
+						"shouji",
+						"360",
+						"cn"
+					],
+					"path": [
+						"phonearea.php"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "13012345678"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "参数替换第一个请求的归属地和手机号",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 1.  替换 上述用例中的 两处：\r",
+							"\r",
+							"//     1. 归属地：在 代码中。 用 data.字段名 替换\r",
+							"pm.test(\"断言归属地\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.sp).to.eql(data.file_sp);\r",
+							"});\r",
+							"//     2. 手机号：在 查询参数中。 用 {{字段名}} 替换。\r",
+							"\r",
+							"// 2.  强调：一旦替换完成，Send 就不再能正常获取 响应数据。（数据必须从数据文件中读取，才能正常发送请求，Send 不具备读取数据文件的功能）\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://cx.shouji.360.cn/phonearea.php?number={{file_mobile}}",
+					"protocol": "http",
+					"host": [
+						"cx",
+						"shouji",
+						"360",
+						"cn"
+					],
+					"path": [
+						"phonearea.php"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "{{file_mobile}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
